@@ -20,8 +20,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Setup Minecraft Loom Sources
+        run: ./gradlew genSources
+
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew build --refresh-dependencies
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
