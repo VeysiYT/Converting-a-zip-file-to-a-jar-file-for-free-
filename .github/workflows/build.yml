@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Extract project zip
-        run: unzip -o "Death Block Mod.zip"
+        run: unzip -o "Death Block Mod.zip" -d .
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -20,11 +20,8 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Setup Minecraft Loom Sources
-        run: ./gradlew genSources
-
       - name: Build with Gradle
-        run: ./gradlew build --refresh-dependencies
+        run: ./gradlew build --no-daemon
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
